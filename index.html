@@ -1325,7 +1325,7 @@
 									</div>
 
 									<div class="contact-form__item contact-form__item-email">
-										<input id="userEmail" name="userEmail" type="email" data-validate="" data-error="This field is required. Please enter a valid email address." data-required="email" placeholder="Email Address*" class="input">
+										<input id="userEmail" name="userEmail" type="email" data-validate="" data-error="This field is required. Please enter a valid email address." data-required="email" placeholder="Email Address*" class="input" onclick="checkEmailAndToggleClass()">
 									</div>
 
 									<div class="contact-form__item">
@@ -1419,7 +1419,12 @@
 		if (buttonStep3 && quizUserEmail) {
 			function checkEmailAndToggleClass() {
 				if (quizUserEmail.value.trim() !== '') {
-					buttonStep3.classList.add('active-button');
+					let quizUserEmail = document.getElementById('userEmail');
+					if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(quizUserEmail.value)) {
+						buttonStep3.classList.add('active-button');
+					} else {
+						buttonStep3.classList.remove('active-button');
+					}
 				} else {
 					buttonStep3.classList.remove('active-button');
 				}
